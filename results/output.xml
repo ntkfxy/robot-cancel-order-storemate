@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.5 (Python 3.15.0 on win32)" generated="2026-10-12T15:11:36.925325" rpa="false" schemaversion="5">
+<suite id="s1" name="Uc22-Order-Cancellation" source="D:\StoreMate-UC22-TC-Aligned\tests-feature1\uc22-order-cancellation.robot">
+<test id="s1-t1" name="TC-22001 Cancel Pending Payment Order" line="11">
+<kw name="Start StoreMate Session" owner="kws" type="SETUP">
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2026-10-12T15:11:39.606355" level="INFO">Length is 19.</msg>
+<arg>${EMAIL}</arg>
+<arg>msg=Set STOREMATE_EMAIL</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2026-10-12T15:11:39.605106" elapsed="0.001423"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2026-10-12T15:11:39.607786" level="INFO">Length is 11.</msg>
+<arg>${PASSWORD}</arg>
+<arg>msg=Set STOREMATE_PASSWORD</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2026-10-12T15:11:39.606970" elapsed="0.000974"/>
+</kw>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:11:39.609559" level="INFO">Opening browser 'chrome' to base url 'https://storemate-final.vercel.app/login'.</msg>
+<arg>${BASE_URL}/login</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-10-12T15:11:39.608965" elapsed="16.482131"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-10-12T15:11:56.092223" elapsed="0.697045"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>css:[data-test="email"]</arg>
+<arg>${WAIT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-10-12T15:11:56.789762" elapsed="0.789865"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:11:57.581060" level="INFO">Typing text 'tototo123@gmail.com' into text field 'css:[data-test="email"]'.</msg>
+<arg>css:[data-test="email"]</arg>
+<arg>${EMAIL}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-12T15:11:57.580258" elapsed="1.285725"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:11:58.867471" level="INFO">Typing password into text field 'css:[data-test="password"]'.</msg>
+<msg time="2026-10-12T15:11:59.033177" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>css:[data-test="password"]</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-12T15:11:58.866492" elapsed="0.502328"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:11:59.370399" level="INFO">Clicking element 'css:[data-test="btn-submit"]'.</msg>
+<arg>css:[data-test="btn-submit"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-12T15:11:59.369489" elapsed="1.027395"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>css:[data-test="btn-user-profile"]</arg>
+<arg>${WAIT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-10-12T15:12:00.397363" elapsed="1.059057"/>
+</kw>
+<status status="PASS" start="2026-10-12T15:11:39.602377" elapsed="21.854393"/>
+</kw>
+<kw name="Open Cancellable Order" owner="kws">
+<kw name="Open Orders Tab" owner="kws">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:12:01.467631" level="INFO">Opening url 'https://storemate-final.vercel.app/orders?status=PENDING'</msg>
+<arg>${BASE_URL}/orders?status=${status}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-10-12T15:12:01.466898" elapsed="0.980694"/>
+</kw>
+<kw name="Wait Until Location Contains" owner="SeleniumLibrary">
+<arg>/orders</arg>
+<arg>${WAIT}</arg>
+<doc>Waits until the current URL contains ``expected``.</doc>
+<status status="PASS" start="2026-10-12T15:12:02.448518" elapsed="0.058671"/>
+</kw>
+<arg>${status}</arg>
+<status status="PASS" start="2026-10-12T15:12:01.465829" elapsed="1.041639"/>
+</kw>
+<kw name="Order Card" owner="kws">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-10-12T15:12:02.512282" level="INFO">${locator} = css:[data-test="card-order-ORD-20261012042011712-3437"]</msg>
+<var>${locator}</var>
+<arg>css:[data-test="card-order-${order_no}"]</arg>
+<doc>Returns the given values which can then be assigned to a variable.</doc>
+<status status="PASS" start="2026-10-12T15:12:02.509500" elapsed="0.002926"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>600s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-10-12T15:12:02.514498" elapsed="7.998389"/>
+</kw>
+<return>
+<value>${locator}</value>
+<status status="PASS" start="2026-10-12T15:12:10.513211" elapsed="0.000275"/>
+</return>
+<msg time="2026-10-12T15:12:10.514095" level="INFO">${card} = css:[data-test="card-order-ORD-20261012042011712-3437"]</msg>
+<var>${card}</var>
+<arg>${order_no}</arg>
+<status status="PASS" start="2026-10-12T15:12:02.508175" elapsed="8.006056"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:12:10.515894" level="INFO">Clicking element 'css:[data-test="card-order-ORD-20261012042011712-3437"]'.</msg>
+<arg>${card}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-12T15:12:10.514954" elapsed="0.474752"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-10-12T15:12:10.991668" level="INFO">${cancel} = css:[data-test="btn-cancel-order"]</msg>
+<var>${cancel}</var>
+<arg>css:[data-test="btn-cancel-order"]</arg>
+<doc>Returns the given values which can then be assigned to a variable.</doc>
+<status status="PASS" start="2026-10-12T15:12:10.990309" elapsed="0.001599"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${cancel}</arg>
+<arg>${WAIT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-10-12T15:12:10.992460" elapsed="0.327366"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:12:11.321210" level="INFO">Executing JavaScript:
+document.querySelector('[data-test="btn-cancel-order"]').scrollIntoView({block: 'center', behavior: 'instant'});
+Without any arguments.</msg>
+<arg>document.querySelector('[data-test="btn-cancel-order"]').scrollIntoView({block: 'center', behavior: 'instant'});</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2026-10-12T15:12:11.320622" elapsed="0.034033"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-10-12T15:12:12.357370" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses execution for the given time.</doc>
+<status status="PASS" start="2026-10-12T15:12:11.355752" elapsed="1.001791"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:12:12.358328" level="INFO">Clicking element 'css:[data-test="btn-cancel-order"]'.</msg>
+<arg>${cancel}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-12T15:12:12.357880" elapsed="0.311734"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-10-12T15:12:14.671758" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses execution for the given time.</doc>
+<status status="PASS" start="2026-10-12T15:12:12.670215" elapsed="2.001898"/>
+</kw>
+<kw name="Get Location" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:12:14.731036" level="INFO">${current_url} = https://storemate-final.vercel.app/cancel-orders/ORD-20261012042011712-3437</msg>
+<var>${current_url}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="PASS" start="2026-10-12T15:12:14.673010" elapsed="0.058339"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\nCurrent URL: ${current_url}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-10-12T15:12:14.734090" elapsed="0.008165"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:12:15.010098" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-25.png"&gt;&lt;img src="selenium-screenshot-25.png" width="800px"&gt;&lt;/a&gt;</msg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-10-12T15:12:14.744245" elapsed="0.266161"/>
+</kw>
+<kw name="Wait Until Location Contains" owner="SeleniumLibrary">
+<arg>/cancel-orders/${order_no}</arg>
+<arg>50s</arg>
+<doc>Waits until the current URL contains ``expected``.</doc>
+<status status="PASS" start="2026-10-12T15:12:15.011006" elapsed="0.010299"/>
+</kw>
+<arg>${ORDER_22001}</arg>
+<arg>PENDING</arg>
+<status status="PASS" start="2026-10-12T15:12:01.464434" elapsed="13.557058"/>
+</kw>
+<kw name="Select Cancellation Reason" owner="kws">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>css:[data-test="dropdown-reason"]</arg>
+<arg>${WAIT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-10-12T15:12:15.023041" elapsed="0.047033"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:12:15.071102" level="INFO">Clicking element 'css:[data-test="dropdown-reason"]'.</msg>
+<arg>css:[data-test="dropdown-reason"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-12T15:12:15.070544" elapsed="0.267934"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>css:[data-test="reason-option-change_payment_method"]</arg>
+<arg>${WAIT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-10-12T15:12:15.339077" elapsed="0.112246"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:12:15.453930" level="INFO">Clicking element 'css:[data-test="reason-option-change_payment_method"]'.</msg>
+<arg>css:[data-test="reason-option-change_payment_method"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-12T15:12:15.452256" elapsed="0.195093"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:12:15.794198" level="INFO">Element 'css:[data-test="dropdown-reason"]' contains text 'เปลี่ยนวิธีการชำระเงิน'.</msg>
+<arg>css:[data-test="dropdown-reason"]</arg>
+<arg>${REASON}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2026-10-12T15:12:15.647838" elapsed="0.146664"/>
+</kw>
+<status status="PASS" start="2026-10-12T15:12:15.022337" elapsed="0.772560"/>
+</kw>
+<kw name="Submit Cancellation" owner="kws">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>css:[data-test="btn-submit-cancel"]</arg>
+<arg>${WAIT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-10-12T15:12:15.826300" elapsed="0.518987"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:12:16.346954" level="INFO">Clicking element 'css:[data-test="btn-submit-cancel"]'.</msg>
+<arg>css:[data-test="btn-submit-cancel"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-12T15:12:16.346121" elapsed="0.421204"/>
+</kw>
+<status status="PASS" start="2026-10-12T15:12:15.825160" elapsed="0.942516"/>
+</kw>
+<kw name="Cancellation Success Should Be Visible" owner="kws">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${SUCCESS_MESSAGE}</arg>
+<arg>${WAIT}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2026-10-12T15:12:16.769703" elapsed="1.203411"/>
+</kw>
+<status status="PASS" start="2026-10-12T15:12:16.768610" elapsed="1.205246"/>
+</kw>
+<kw name="Cancelled Order Should Be Listed" owner="kws">
+<kw name="Open Orders Tab" owner="kws">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:12:17.987504" level="INFO">Opening url 'https://storemate-final.vercel.app/orders?status=CANCELLED'</msg>
+<arg>${BASE_URL}/orders?status=${status}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-10-12T15:12:17.986838" elapsed="1.092786"/>
+</kw>
+<kw name="Wait Until Location Contains" owner="SeleniumLibrary">
+<arg>/orders</arg>
+<arg>${WAIT}</arg>
+<doc>Waits until the current URL contains ``expected``.</doc>
+<status status="PASS" start="2026-10-12T15:12:19.080204" elapsed="0.100067"/>
+</kw>
+<arg>CANCELLED</arg>
+<status status="PASS" start="2026-10-12T15:12:17.985398" elapsed="1.195152"/>
+</kw>
+<kw name="Order Card" owner="kws">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-10-12T15:12:19.183395" level="INFO">${locator} = css:[data-test="card-order-ORD-20261012042011712-3437"]</msg>
+<var>${locator}</var>
+<arg>css:[data-test="card-order-${order_no}"]</arg>
+<doc>Returns the given values which can then be assigned to a variable.</doc>
+<status status="PASS" start="2026-10-12T15:12:19.182197" elapsed="0.001305"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>600s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-10-12T15:12:19.183881" elapsed="8.899665"/>
+</kw>
+<return>
+<value>${locator}</value>
+<status status="PASS" start="2026-10-12T15:12:28.083930" elapsed="0.000210"/>
+</return>
+<msg time="2026-10-12T15:12:28.084750" level="INFO">${card} = css:[data-test="card-order-ORD-20261012042011712-3437"]</msg>
+<var>${card}</var>
+<arg>${order_no}</arg>
+<status status="PASS" start="2026-10-12T15:12:19.181091" elapsed="8.903777"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:12:28.181769" level="INFO">Element 'css:[data-test="card-order-ORD-20261012042011712-3437"]' contains text 'ORD-20261012042011712-3437'.</msg>
+<arg>${card}</arg>
+<arg>${order_no}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2026-10-12T15:12:28.085350" elapsed="0.096652"/>
+</kw>
+<arg>${ORDER_22001}</arg>
+<status status="PASS" start="2026-10-12T15:12:17.984056" elapsed="10.198283"/>
+</kw>
+<kw name="Order Card" owner="kws">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-10-12T15:12:28.185622" level="INFO">${locator} = css:[data-test="card-order-ORD-20261012042011712-3437"]</msg>
+<var>${locator}</var>
+<arg>css:[data-test="card-order-${order_no}"]</arg>
+<doc>Returns the given values which can then be assigned to a variable.</doc>
+<status status="PASS" start="2026-10-12T15:12:28.184413" elapsed="0.001368"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>600s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-10-12T15:12:28.186550" elapsed="0.088618"/>
+</kw>
+<return>
+<value>${locator}</value>
+<status status="PASS" start="2026-10-12T15:12:28.275393" elapsed="0.000119"/>
+</return>
+<msg time="2026-10-12T15:12:28.275925" level="INFO">${card} = css:[data-test="card-order-ORD-20261012042011712-3437"]</msg>
+<var>${card}</var>
+<arg>${ORDER_22001}</arg>
+<status status="PASS" start="2026-10-12T15:12:28.183304" elapsed="0.092714"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-10-12T15:12:28.277328" level="INFO">Clicking element 'css:[data-test="card-order-ORD-20261012042011712-3437"]'.</msg>
+<arg>${card}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-10-12T15:12:28.276677" elapsed="0.242588"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${REASON}</arg>
+<arg>300s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2026-10-12T15:12:28.519980" elapsed="0.160536"/>
+</kw>
+<kw name="Stop StoreMate Session" owner="kws" type="TEARDOWN">
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2026-10-12T15:12:28.683413" elapsed="3.564003"/>
+</kw>
+<status status="PASS" start="2026-10-12T15:12:28.682352" elapsed="3.565346"/>
+</kw>
+<doc>Scenario 22.1: success message, cancelled status, reason, cancelled tab</doc>
+<status status="PASS" start="2026-10-12T15:11:39.600107" elapsed="52.648173"/>
+</test>
+<doc>UC-22: 9 test cases mapped to SPRS-Test-Cases.docx (TC-22001 through TC-22009)</doc>
+<status status="PASS" start="2026-10-12T15:11:36.939622" elapsed="55.310743"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Uc22-Order-Cancellation" id="s1" pass="1" fail="0" skip="0">Uc22-Order-Cancellation</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

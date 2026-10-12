@@ -1,0 +1,19 @@
+*** Variables ***
+${BASE_URL}              %{STOREMATE_BASE_URL=https://storemate-final.vercel.app}
+${BROWSER}               %{STOREMATE_BROWSER=chrome}
+${EMAIL}                 %{STOREMATE_EMAIL=tototo123@gmail.com}
+${PASSWORD}              %{STOREMATE_PASSWORD=Natthakan99}
+${REASON}                เปลี่ยนวิธีการชำระเงิน
+${DESCRIPTION}           ไม่ต้องการสินค้าแล้ว
+${SUCCESS_MESSAGE}       ส่งคำขอยกเลิกสำเร็จ
+${VALIDATION_MESSAGE}    กรุณาเลือกเหตุผลในการยกเลิกคำสั่งซื้อ
+${ORDER_22001}           ORD-20261012042011712-3437
+${ORDER_22002}           ORD-20261012042259512-3710
+${ORDER_22003}           ORD-20261012042025774-8234
+${ORDER_22004}           ORD-20260917171713676-4546
+${ORDER_22005}           ORD-20261012041546209-3421
+${ORDER_22006}           ORD-20261012041955836-8795
+${ORDER_22007}           ORD-20261012041921452-8946
+${ORDER_22008}           ORD-20260918191320940-8506
+${ORDER_22009}           ORD-20261012041826716-6061
+${WAIT}                  300s
